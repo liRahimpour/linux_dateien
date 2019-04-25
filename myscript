@@ -40,7 +40,10 @@ update
 # if 64 : wget https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-243.0.0-linux-x86_64.tar.gz
 # if 32 : wget https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-243.0.0-linux-x86.tar.gz
 # die datei entpacken für  64 bit hier beispiel : tar -xvzf google-cloud-sdk-243.0.0-linux-x86_64.tar.gz
-# gcloud (Google-sdk ) instalieren: ./google-cloud-sdk/install.sh
+# gcloud (Google-sdk ) instalieren: ./google-cloud-sdk/install.sh (y->y-> return))
+
+# Bis hier gibt es eien Image Nqamens: ubuntu_gck_base
+
 # dann muss gcloud init gemqacht werden, da wird gcloud  initialisiert, in google account angemeldet  und nach Projekt gefraget : ./google-cloud-sdk/bin/gcloud init
 # loggen sie sich ein 
 # gcloud auth login
