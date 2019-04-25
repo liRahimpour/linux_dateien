@@ -1,0 +1,87 @@
+#!/bin/sh
+
+
+####################
+### funktion(en) ###
+####################
+
+update() {
+	echo "Möchten Sie Update durchführen: \033[1;32mj/n ?\033[0m"
+while :
+do
+  read antwort
+  case $antwort in
+	j)
+		sudo apt-get -y update
+		break
+		;;
+	n)
+		echo "Ihre Antwort: \033[1;32mnein\033[0m"
+		break
+		;;
+	*)
+		echo "\033[41mSorry, Isch ab nix verstanden, Noma bitte ?!!!\033[0m"
+		;;
+  esac
+done
+}
+
+#########################
+### tools isntalieren ###
+#########################
+
+# kann man so machen dass am anfang gefragt wird ob es um eine LINUX oder Ein MAC handelt :
+update
+
+
+#Payton2 instalieren : einfach ausführen lassen : sudo apt install python-minimal
+# rausfinden ob Linux 64 oder 32 bin ist : getconf LONG_BIT -> ausgabe : 64 oder 32 -> mit if fangen
+# in container -> apt install wget
+# if 64 : wget https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-243.0.0-linux-x86_64.tar.gz
+# if 32 : wget https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-243.0.0-linux-x86.tar.gz
+# die datei entpacken für  64 bit hier beispiel : tar -xvzf google-cloud-sdk-243.0.0-linux-x86_64.tar.gz
+# gcloud (Google-sdk ) instalieren: ./google-cloud-sdk/install.sh
+# dann muss gcloud init gemqacht werden, da wird gcloud  initialisiert, in google account angemeldet  und nach Projekt gefraget : ./google-cloud-sdk/bin/gcloud init
+# loggen sie sich ein 
+# gcloud auth login
+#gcloud auth application-default login
+#instalieren sie kubectl:
+#gcloud components install kubectl
+
+update
+
+#########################
+### Cluster erstellen ###
+#########################
+
+
+
+###############################################
+### kubemci-Befehlszeilentool herunterladen ###
+###############################################
+
+echo
+echo "\t \033[1;36mkubemci-Befehlszeilentool herunterladen"
+echo "\t \033[1;36mFuer Linux: \033[1;32m"l" \033[1;36mund fuer MacOS: \033[1;32m"m" \033[1;36meingeben:\033[0m"
+# TODO:Überprüfen ob kubemci da ist dann löschen danach herunterladen 
+while :
+do
+  read INPUT_STRING
+  case $INPUT_STRING in
+	l)
+		wget https://storage.googleapis.com/kubemci-release/release/latest/bin/linux/amd64/kubemci
+		chmod +x ./kubemci
+    	break
+		;;
+	m)
+		wget https://storage.googleapis.com/kubemci-release/release/latest/bin/darwin/amd64/kubemci
+		chmod +x ./kubemci
+    	break
+		;;
+	*)
+		echo "\033[41mSorry, Isch ab nix verstanden, Noma bitte ?!!!\033[0m"
+		;;
+  esac
+done
+echo 
+echo "Done!"
