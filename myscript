@@ -103,12 +103,19 @@ echo "Done!"
 # die datei und config und kube ordner kann man in root (~) sehen 
 
 KUBECONFIG=~/mcikubeconfig gcloud container clusters get-credentials --zone=europe-west4-a test-cluster
-KUBECONFIG=~/mcikubeconfig gcloud container clusters get-credentials --zone=europe-west4-a test-1-cluster
+KUBECONFIG=~/mcikubeconfig gcloud container clusters get-credentials --zone=europe-west4-a test-cluster-1
 
 # NodePort-Dienst für jeden Cluster bereitstellen
 # die dateien sollen in verzeuichniss app sein
 #mkdir ./app
 # die Deployment und die service manifest müssen gepullt werden 
+# mkdir app 
+# cd app
+# git init
+# git pull https://github.com/liRahimpour/linux_dateien.git
+
+#ACHTUNG : die datei myscript muss ja gelöscht werden
+
 
 
 #Mit folgender Schleife können Sie durch alle Cluster iterieren und die Kontexte abrufen, um die Anwendung zusammen mit dem nodePort-Dienst bereitzustellen:
@@ -125,6 +132,7 @@ done
 
 #-v /doesnt/exist:/foo
 #docker run -it -v /temp:/temp --name=gcsdk lipad/ubuntu_gcsdk_base bash
+
 
 
 
