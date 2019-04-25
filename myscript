@@ -29,7 +29,8 @@ done
 #########################
 ### tools isntalieren ###
 #########################
-
+#apt install git 
+#Git konfigurieren
 # kann man so machen dass am anfang gefragt wird ob es um eine LINUX oder Ein MAC handelt :
 update
 
@@ -49,12 +50,14 @@ update
 # dann muss gcloud init gemqacht werden, da wird gcloud  initialisiert, in google account angemeldet  und nach Projekt gefraget : ./google-cloud-sdk/bin/gcloud init
 # gcloud config set compute/zone .....
 # TODO: zone muss in einer Veariabekle gespeichert werden, und die Cluster name
-# cluster erstellen: gcloud container clusters create test-cluster (Achten Sie darauf, dass zwei oder mehr GKE-Cluster im selben GCP-Projekt und -Netzwerk ausgeführt werden.)
+
 
 # loggen sie sich ein :gcloud auth login
 # gcloud auth application-default login
 # instalieren sie kubectl:
 #gcloud components install kubectl
+
+
 
 update
 
@@ -62,7 +65,7 @@ update
 ### Cluster erstellen ###
 #########################
 
-
+# cluster erstellen: gcloud container clusters create test-cluster (Achten Sie darauf, dass zwei oder mehr GKE-Cluster im selben GCP-Projekt und -Netzwerk ausgeführt werden.)
 
 ###############################################
 ### kubemci-Befehlszeilentool herunterladen ###
@@ -96,7 +99,23 @@ done
 echo 
 echo "Done!"
 
+# Datei "kubeconfig" erstellen 
+# die datei und config und kube ordner kann man in root (~) sehen 
 
+KUBECONFIG=~/mcikubeconfig gcloud container clusters get-credentials --zone=europe-west4-a test-cluster
+KUBECONFIG=~/mcikubeconfig gcloud container clusters get-credentials --zone=europe-west4-a test-1-cluster
+
+# NodePort-Dienst für jeden Cluster bereitstellen
+# die dateien sollen in verzeuichniss app sein
+#mkdir ./app
+# die Deployment und die service manifest müssen gepullt werden 
+
+
+#Mit folgender Schleife können Sie durch alle Cluster iterieren und die Kontexte abrufen, um die Anwendung zusammen mit dem nodePort-Dienst bereitzustellen:
+KUBECONFIG=~/mcikubeconfig
+for ctx in $(kubectl config get-contexts -o name); do
+  kubectl --context="${ctx}" create -f ./app --validate=false
+done
 
 ##############################Notiz==##########
 # die befehle von außen:
@@ -104,9 +123,11 @@ echo "Done!"
 #	docker exec -it gcsdk ./google-cloud-sdk/bin/kubectl
 #	docker exec -it gcsdk kubemci
 
+#-v /doesnt/exist:/foo
+#docker run -it -v /temp:/temp --name=gcsdk lipad/ubuntu_gcsdk_base bash
 
 
-KUBECONFIG=[PATH/TO/MCI_KUBECONFIG_FILE] gcloud container clusters get-credentials --zone=[ZONE_NAME] [CLUSTER_NAME]
+
 
 
 
