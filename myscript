@@ -47,7 +47,8 @@ update
 # 
 
 # dann muss gcloud init gemqacht werden, da wird gcloud  initialisiert, in google account angemeldet  und nach Projekt gefraget : ./google-cloud-sdk/bin/gcloud init
-
+# gcloud config set compute/zone .....
+# TODO: zone muss in einer Veariabekle gespeichert werden, und die Cluster name
 # cluster erstellen: gcloud container clusters create test-cluster (Achten Sie darauf, dass zwei oder mehr GKE-Cluster im selben GCP-Projekt und -Netzwerk ausgeführt werden.)
 
 # loggen sie sich ein :gcloud auth login
@@ -94,3 +95,22 @@ do
 done
 echo 
 echo "Done!"
+
+
+
+##############################Notiz==##########
+# die befehle von außen:
+#	docker exec -it gcsdk ./google-cloud-sdk/bin/gcloud version
+#	docker exec -it gcsdk ./google-cloud-sdk/bin/kubectl
+#	docker exec -it gcsdk kubemci
+
+
+
+KUBECONFIG=[PATH/TO/MCI_KUBECONFIG_FILE] gcloud container clusters get-credentials --zone=[ZONE_NAME] [CLUSTER_NAME]
+
+
+
+
+
+
+
