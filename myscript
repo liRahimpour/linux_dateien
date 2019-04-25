@@ -44,11 +44,15 @@ update
 
 # Bis hier gibt es eien Image Nqamens: ubuntu_gck_base
 
+# 
+
 # dann muss gcloud init gemqacht werden, da wird gcloud  initialisiert, in google account angemeldet  und nach Projekt gefraget : ./google-cloud-sdk/bin/gcloud init
-# loggen sie sich ein 
-# gcloud auth login
-#gcloud auth application-default login
-#instalieren sie kubectl:
+
+# cluster erstellen: gcloud container clusters create test-cluster (Achten Sie darauf, dass zwei oder mehr GKE-Cluster im selben GCP-Projekt und -Netzwerk ausgeführt werden.)
+
+# loggen sie sich ein :gcloud auth login
+# gcloud auth application-default login
+# instalieren sie kubectl:
 #gcloud components install kubectl
 
 update
@@ -73,12 +77,14 @@ do
   case $INPUT_STRING in
 	l)
 		wget https://storage.googleapis.com/kubemci-release/release/latest/bin/linux/amd64/kubemci
-		chmod +x ./kubemci
+		chmod +x ./kubemci # ausführbar machen
+		cp kubemci ./bin #in einer ausführbare pfad kopieren
     	break
 		;;
 	m)
 		wget https://storage.googleapis.com/kubemci-release/release/latest/bin/darwin/amd64/kubemci
 		chmod +x ./kubemci
+		cp kubemci ./bin
     	break
 		;;
 	*)
